@@ -3,6 +3,7 @@
   "description": "A resource library project for Code Your Future",
   "version": "0.0.1",
   "private": true,
+  "license": "ISC",
   "author": {
     "name": "Jonathan Sharpe",
     "email": "mail@jonrsharpe",
