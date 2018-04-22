@@ -24,11 +24,6 @@ describe('App', () => {
 
   it('renders the resources', () => {
     wrapper.update()
-    expect(wrapper.find('li').length).toEqual(2)
-    const firstElement = wrapper.find('li').first()
-    const firstResource = resources[0]
-    expect(firstElement.find('[href]').props().href).toEqual(firstResource.url)
-    expect(firstElement.text()).toContain(firstResource.name)
-    expect(firstElement.text()).toContain(firstResource.description)
+    expect(wrapper.find('Resource').length).toEqual(2)
   })
 })

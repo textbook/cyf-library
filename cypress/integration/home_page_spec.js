@@ -9,11 +9,11 @@ describe('Home Page', () => {
   })
 
   it('should show the default resources', () => {
-    cy.get('li').should(elements => {
+    cy.get('.resource').should(elements => {
       expect(elements).to.have.length(1)
       let firstElement = elements.first()
-      expect(firstElement).to.contain('React')
-      expect(firstElement).to.contain('The official website for React')
+      expect(firstElement.find('.resource-name')).to.contain('React')
+      expect(firstElement.find('.resource-description')).to.contain('The official website for React')
     })
   })
 })

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import Header from './components/Header'
+import Resource from './components/Resource'
 
 class App extends Component {
   constructor (props) {
@@ -20,14 +21,11 @@ class App extends Component {
     return (
       <div className="App">
         <Header/>
-        <ul>
-          {this.state.resources.map((resource, index) => (
-            <li key={index}>
-              <a href={resource.url}>{resource.name}</a>
-              <span> {resource.description}</span>
-            </li>
-          ))}
-        </ul>
+        <div className="resource-list">
+        {this.state.resources.map((resource, index) => (
+          <Resource key={index} resource={resource}/>
+        ))}
+        </div>
       </div>
     )
   }

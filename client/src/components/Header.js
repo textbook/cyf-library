@@ -4,7 +4,7 @@ import './Header.css'
 const Header = () => (
     <header>
       <img src="cyf_logo.png" alt="Code Your Future logo"/>
-      <h1>Resource library</h1>
+      <h1 className="page-title">Resource library</h1>
     </header>
 )
 
