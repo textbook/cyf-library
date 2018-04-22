@@ -26,7 +26,7 @@ describe('Resource', () => {
   })
 
   it('shows the resource URL', () => {
-    expect(wrapper.find('.resource-name[href]').props().href)
+    expect(wrapper.find('.resource-link[href]').props().href)
         .toEqual(resource.url)
   })
 })

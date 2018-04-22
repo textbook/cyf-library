@@ -6,6 +6,6 @@
     min-height: 100px;
 }
 
-.resource-name {
+.resource-name, .resource-description, .resource-link {
     display: block;
 }
