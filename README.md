@@ -1,6 +1,8 @@
 Library
 =======
 
+[![Build Status][6]][7]
+
 Technology
 ----------
 
@@ -103,3 +105,5 @@ Deployment
  [3]: https://expressjs.com/
  [4]: https://reactjs.org/
  [5]: https://getbootstrap.com/
+ [6]: https://travis-ci.org/textbook/cyf-library.svg?branch=master
+ [7]: https://travis-ci.org/textbook/cyf-library

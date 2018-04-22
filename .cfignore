@@ -1,7 +1,12 @@
 client/
 cypress/
 tests/
+.eslintignore
 .eslintrc
 .gitignore
+.travis.yml
 cypress.json
+jest.config.js
+LICENSE
+nodemon.json
 README.md

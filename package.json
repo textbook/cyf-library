@@ -32,7 +32,8 @@
     "test:watch:server": "yarn test:server --watch",
     "lint": "eslint .",
     "preserve": "./preserve.sh",
-    "serve": "cross-env NODE_ENV=production yarn start:server"
+    "serve": "cross-env NODE_ENV=production yarn start:server",
+    "ship": "yarn lint && yarn test && yarn e2e:ci"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",

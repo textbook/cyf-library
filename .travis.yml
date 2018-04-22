@@ -12,3 +12,12 @@ script:
   - yarn lint
   - yarn test
   - yarn e2e:ci
+
+deploy:
+  skip_cleanup: true
+  provider: cloudfoundry
+  username: $CF_USERNAME
+  password: $CF_PASSWORD
+  api: https://api.run.pcfbeta.io
+  organization: pivot-jsharpe
+  space: code-your-future
