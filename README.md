@@ -51,8 +51,8 @@ buildpack][1].
 The repository is set up so that most Yarn commands will work correctly from
 the root. The following are currently available:
 
-  - `yarn install`: runs installation for the root Express app then switches
-    to `client/` and installs there too.
+  - `yarn install:all`: runs installation for the root Express app then
+    switches to `client/` and installs there too.
    
   - `yarn build`: builds the React app and copies the files into `static/`.
 
