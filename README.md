@@ -52,6 +52,10 @@ Testing
   - `yarn e2e:dev` works like `e2e`, but pointing to the dev version of the
     app on port 4200; again, you must separately run the app using `yarn dev`.
 
+  - `yarn e2e:ci` works like `e2e`, but boots the app for you and waits for it
+    to start before testing it (and shuts it down afterwards). Note that you
+    need to stop the app before running this command.
+
 Deployment
 ----------
 

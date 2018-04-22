@@ -23,6 +23,8 @@
     "cypress": "cypress open",
     "e2e": "cypress run",
     "e2e:dev": "cross-env CYPRESS_BASE_URL=http://localhost:4200 cypress run",
+    "e2e:ci": "concurrently -k -s first -n \"app,e2e\" \"yarn start\" \"yarn e2e:ci:safe\"",
+    "e2e:ci:safe": "wait-on -l -t 30000 http-get://localhost:3000 && yarn e2e",
     "test": "yarn test:server && yarn test:client",
     "test:client": "cd client && cross-env CI=true yarn test",
     "test:server": "jest",
@@ -58,7 +60,8 @@
     "eslint-plugin-standard": "^3.0.1",
     "jest": "^22.4.3",
     "rimraf": "^2.6.2",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "wait-on": "^2.1.0"
   },
   "engines": {
     "node": "8.9.4",
