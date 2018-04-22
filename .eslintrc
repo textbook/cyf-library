@@ -5,5 +5,21 @@
   "extends": "eslint:recommended",
   "parserOptions": {
     "ecmaVersion": 2017
+  },
+  "rules": {
+    "prefer-arrow-callback": [
+      "error",
+      {
+        "allowNamedFunctions": true
+      }
+    ],
+    "indent": [
+      "error",
+      2
+    ],
+    "operator-linebreak": [
+      "error",
+      "before"
+    ]
   }
 }
