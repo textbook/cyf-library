@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
+import Header from './components/Header'
 
 class App extends Component {
   constructor (props) {
@@ -18,7 +19,7 @@ class App extends Component {
   render () {
     return (
       <div className="App">
-        <h1>Resource library</h1>
+        <Header/>
         <ul>
           {this.state.resources.map((resource, index) => (
             <li key={index}>

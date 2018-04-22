@@ -17,11 +17,6 @@ describe('App', () => {
     wrapper = shallow(<App/>)
   })
 
-  it('renders the title', () => {
-    expect(wrapper.find('h1').text().trim().toLowerCase())
-        .toEqual('resource library')
-  })
-
   it('requests resources from the backend', () => {
     expect(fetch.mock.calls.length).toEqual(1)
     expect(fetch.mock.calls[0][0]).toEqual('/api/resources')
