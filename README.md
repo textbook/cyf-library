@@ -1,6 +1,40 @@
 Library
 =======
 
+Technology
+----------
+
+The application uses technologies taught as part of the [Code Your Future
+syllabus][2]:
+
+  - [Express][3] web server
+  - [React][4] front-end application
+  - [Bootstrap][5] CSS library
+
+Structure
+---------
+
+The application structure may seem quite complex at first, so here is a guide
+to what the different parts are:
+
+  - `bin/`: Contains the `www` file to start the Express app
+
+  - `client/`: Contains the React frontend and its associated tests. Note that
+    this is also a Node project with a `package.json`.
+
+  - `cypress`: Contains the end-to-end test suite.
+
+  - `routes`: Contains the various Express app routers.
+
+  - `static`: Contains the static resources for the Express app (note that
+    these are overwritten with the compiled React app by the `yarn build`
+    command).
+
+  - `tests`: Contains the unit and integration tests for the Express app.
+
+  - `app.js`: Contains the Express app definition, which configures the app
+    and sets up the routes.
+
 Development
 -----------
 
@@ -65,3 +99,7 @@ Deployment
     don't want to ship the raw React code).
 
  [1]: https://github.com/cloudfoundry/nodejs-buildpack/releases/tag/v1.6.15
+ [2]: https://codeyourfuture.github.io/syllabus-master/
+ [3]: https://expressjs.com/
+ [4]: https://reactjs.org/
+ [5]: https://getbootstrap.com/
