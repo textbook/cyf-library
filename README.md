@@ -6,9 +6,11 @@ Development
 
 The following are development prerequisites:
 
-  - Node (tested with 8.x) and NPM: `brew install node` (on OS X)
+  - Node (tested with 8.9.4); and
+  - Yarn (1.2.1).
 
-  - Yarn: `npm install -g yarn`
+These versions are used to match v1.6.15 of the Cloud Foundry [Node
+buildpack][1].
 
 The repository is set up so that most Yarn commands will work correctly from
 the root. The following are currently available:
@@ -57,3 +59,5 @@ Deployment
     run `yarn build` manually first; otherwise, a warning will be shown and
     the app won't start (this is intended for production deployments where you
     don't want to ship the raw React code).
+
+ [1]: https://github.com/cloudfoundry/nodejs-buildpack/releases/tag/v1.6.15
