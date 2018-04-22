@@ -8,7 +8,7 @@ before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.2.1
   - export PATH="$HOME/.yarn/bin:$PATH"
 
-install: yarn install-all
+install: yarn install:all
 
 script:
   - yarn lint
