@@ -1,0 +1,7 @@
+client/
+cypress/
+tests/
+.eslintrc
+.gitignore
+cypress.json
+README.md

@@ -1,0 +1,7 @@
+---
+applications:
+- name: library
+  memory: 1G
+  instances: 1
+  buildpack: nodejs_buildpack
+  command: yarn serve
