@@ -8,7 +8,12 @@ const appFactory = require('../app')
 const debug = require('debug')('library:server')
 const http = require('http')
 
-const app = appFactory(process.env.DATABASE_URL || 'mongodb://localhost:27017/library')
+/**
+ * Configure database on app creation
+ */
+const mongoUrl = process.env.DATABASE_URL || 'mongodb://localhost:27017/library'
+const app = appFactory(mongoUrl)
+debug(`Connecting to ${mongoUrl}`)
 
 /**
  * Get port from environment and store in Express.
