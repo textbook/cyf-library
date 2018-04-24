@@ -2,13 +2,15 @@ import React from 'react'
 import './Resource.css'
 
 const Resource = (props) => {
-  const { name, url, description } = props.resource;
+  const { name, url, description } = props.resource
   return (
-      <div className="resource">
-        <h3 className="resource-name">{name}</h3>
-        <span className="resource-description">{description}</span>
-        <a className="resource-link" href={url}>View</a>
+    <div className="resource card">
+      <div className="card-body">
+        <h3 className="resource-name card-title">{name}</h3>
+        <p className="resource-description card-text">{description}</p>
+        <a className="resource-link card-link" href={url}>View</a>
       </div>
+    </div>
   )
 }
 

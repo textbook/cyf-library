@@ -1,8 +1,8 @@
 import React from 'react'
 import {shallow} from 'enzyme'
-import App from './App'
+import ResourceList from './ResourceList'
 
-describe('App', () => {
+describe('ResourceList', () => {
   const resources = [
     {name: 'React', description: 'Official React homepage', url: 'https://reactjs.org'},
     {name: 'Angular', description: 'Official Angular homepage', url: 'http://angular.io'},
@@ -14,14 +14,16 @@ describe('App', () => {
     fetch.resetMocks()
     fetch.mockResponseOnce(JSON.stringify(resources))
 
-    wrapper = shallow(<App/>)
+    wrapper = shallow(<ResourceList/>)
   })
 
-  it('renders the header', () => {
-    expect(wrapper.find('Header').length).toBe(1)
+  it('requests resources from the backend', () => {
+    expect(fetch.mock.calls.length).toEqual(1)
+    expect(fetch.mock.calls[0][0]).toEqual('/api/resources')
   })
 
-  it('renders the resource list', () => {
-    expect(wrapper.find('ResourceList').length).toBe(1)
+  it('renders the resources', () => {
+    wrapper.update()
+    expect(wrapper.find('Resource').length).toEqual(2)
   })
 })
