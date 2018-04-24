@@ -1,25 +1,37 @@
 {
   "env": {
+    "es6": true,
     "node": true
   },
   "extends": "eslint:recommended",
   "parserOptions": {
-    "ecmaVersion": 2017
+    "ecmaVersion": 2017,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
   },
   "rules": {
+    "indent": [
+      "error",
+      2
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": true
+      }
+    ],
+    "operator-linebreak": [
+      "error",
+      "before"
+    ],
     "prefer-arrow-callback": [
       "error",
       {
         "allowNamedFunctions": true
       }
-    ],
-    "indent": [
-      "error",
-      2
-    ],
-    "operator-linebreak": [
-      "error",
-      "before"
     ]
   }
 }

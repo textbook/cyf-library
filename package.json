@@ -16,9 +16,9 @@
     "postbuild:client": "copy \"./client/build/**/*\" static",
     "dev": "concurrently -k -n \"client,server\" \"yarn dev:client\" \"yarn dev:server\"",
     "dev:client": "cd client && cross-env PORT=4200 yarn start",
-    "dev:server": "nodemon ./bin/www",
+    "dev:server": "cross-env nodemon ./bin/www.js",
     "start": "yarn build && yarn start:server",
-    "start:server": "node ./bin/www",
+    "start:server": "node ./bin/www.js",
     "install:all": "yarn install && yarn install:client",
     "install:client": "cd client && yarn install",
     "cypress": "cypress open",
@@ -28,7 +28,7 @@
     "e2e:ci:safe": "wait-on -l -t 30000 http-get://localhost:3000 && yarn e2e",
     "test": "yarn test:server && yarn test:client",
     "test:client": "cd client && cross-env CI=true yarn test",
-    "test:server": "jest",
+    "test:server": "jest --config ./tests/jest.config.js",
     "test:watch:client": "cd client && yarn test",
     "test:watch:server": "yarn test:server --watch",
     "lint": "eslint .",
@@ -41,6 +41,8 @@
     "cross-env": "^5.1.4",
     "debug": "~2.6.9",
     "express": "~4.16.0",
+    "express-mongo-db": "^2.0.4",
+    "mongodb": "^3.0.7",
     "morgan": "~1.9.0"
   },
   "devDependencies": {
@@ -61,6 +63,7 @@
     "eslint-plugin-react": "^7.1.0",
     "eslint-plugin-standard": "^3.0.1",
     "jest": "^22.4.3",
+    "mongodb-memory-server": "^1.7.3",
     "rimraf": "^2.6.2",
     "supertest": "^3.0.0",
     "wait-on": "^2.1.0"

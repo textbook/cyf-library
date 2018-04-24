@@ -1,0 +1,9 @@
+{
+  "resources": [
+    {
+      "name": "React",
+      "description": "The official website for React",
+      "url": "https://reactjs.org/"
+    }
+  ]
+}
