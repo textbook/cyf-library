@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
 import './App.css'
 import Header from './components/Header'
+import About from './components/About'
 import ResourceList from './components/ResourceList'
 
 class App extends Component {
@@ -12,12 +14,16 @@ class App extends Component {
   render () {
     return (
       <div className="App">
-        <Header/>
-        <main className="container pt-5">
-          <div className="col-sm-8 offset-sm-2">
-            <ResourceList/>
-          </div>
-        </main>
+        <div>
+          <Header/>
+
+          <main className="container pt-5">
+            <div className="col-md-8 offset-md-2">
+              <Route exact path="/" component={ResourceList} />
+              <Route exact path="/about" component={About} />
+            </div>
+          </main>
+        </div>
       </div>
     )
   }

@@ -19,6 +19,10 @@ function appFactory (mongoUrl) {
 
   app.use('/api/resources', resourcesRouter)
 
+  app.get('*', (req, res) => {
+    res.sendfile('./static/index.html')
+  })
+
   return app
 }
 

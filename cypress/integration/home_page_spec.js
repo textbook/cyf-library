@@ -4,9 +4,9 @@ describe('Home Page', () => {
     cy.visit('/')
   })
 
-  it('should show the application title', () => {
+  it('should show the site title', () => {
     cy.title().should('equal', 'CYF Library')
-    cy.get('[data-qa=page-title]').should('have.text', 'Resource library')
+    cy.get('[data-qa=site-title]').should('have.text', 'Resource library')
   })
 
   it('should show the default resources', () => {
@@ -18,5 +18,10 @@ describe('Home Page', () => {
         .should('have.text', 'View')
         .and('have.prop', 'href', 'https://reactjs.org/')
     })
+  })
+
+  it('should provide a link to the about page', () => {
+    cy.get('[data-qa=nav-link][data-qa-value=about]').first().should('have.text', 'About').click()
+    cy.get('[data-qa=page-title').should('have.text', 'About')
   })
 })
