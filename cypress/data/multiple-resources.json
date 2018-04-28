@@ -1,0 +1,19 @@
+{
+  "resources": [
+    {
+      "name": "React",
+      "description": "The official website for React",
+      "url": "https://reactjs.org/"
+    },
+    {
+      "name": "Angular",
+      "description": "The official website for Angular",
+      "url": "https://angular.io/"
+    },
+    {
+      "name": "Node",
+      "description": "The official website for Node",
+      "url": "https://nodejs.org/en/"
+    }
+  ]
+}

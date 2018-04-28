@@ -4,11 +4,11 @@ import './Resource.css'
 const Resource = (props) => {
   const { name, url, description } = props.resource
   return (
-    <div className="resource card">
+    <div className="card" data-qa="resource">
       <div className="card-body">
-        <h3 className="resource-name card-title">{name}</h3>
-        <p className="resource-description card-text">{description}</p>
-        <a className="resource-link card-link" href={url}>View</a>
+        <h3 className="card-title"  data-qa="resource-name">{name}</h3>
+        <p className="card-text" data-qa="resource-description">{description}</p>
+        <a className="card-link" href={url} data-qa="resource-link">View</a>
       </div>
     </div>
   )

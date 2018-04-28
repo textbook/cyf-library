@@ -6,7 +6,7 @@ const Header = () => (
     <span className="navbar-brand">
       <img src="cyf_logo.png" alt="Code Your Future logo"/>
     </span>
-    <h1 className="page-title navbar-text d-none d-sm-block">Resource library</h1>
+    <h1 className="page-title navbar-text d-none d-sm-block" data-qa="page-title">Resource library</h1>
   </header>
 )
 

@@ -26,4 +26,19 @@ describe('ResourceList', () => {
     wrapper.update()
     expect(wrapper.find('Resource').length).toEqual(2)
   })
+
+  it('renders a search box', () => {
+    expect(wrapper.find('Search').length).toEqual(1)
+  })
+
+  describe('when search performed', () => {
+    beforeEach(() => {
+      wrapper.find('Search').props().search('react')
+    })
+
+    it('should filter the resources', () => {
+      wrapper.update()
+      expect(wrapper.find('Resource').length).toEqual(1)
+    })
+  })
 })
