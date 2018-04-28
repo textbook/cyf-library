@@ -35,7 +35,9 @@
     "lint": "eslint .",
     "preserve": "./preserve.sh && yarn mm migrate",
     "serve": "cross-env NODE_ENV=production yarn start:server",
-    "ship": "yarn lint && yarn test && yarn e2e:ci"
+    "ship": "yarn lint && yarn test && yarn e2e:ci",
+    "db:clear": "node ./cypress/data/loader.js ./cypress/data/no-resources.json",
+    "db:reset": "yarn db:clear && yarn mm migrate"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",

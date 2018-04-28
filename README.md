@@ -88,9 +88,9 @@ MongoDB running on port 27017 on localhost.
 
 Note that the E2E tests will clear and re-seed the database, removing all
 collections *including* the `_migrations` collection that tracks which
-migrations have already been applied. Therefore if you want to restore a local
-working state after runningn them you can run `yarn mm migrate` to re-apply
-all migrations.
+migrations have already been applied. If you want to restore your database to
+a starting state, run `yarn db:reset` to empty it out and re-run all
+migrations.
 
 Testing
 -------
