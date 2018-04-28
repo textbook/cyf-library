@@ -29,6 +29,8 @@ to what the different parts are:
 
   - `routes/`: Contains the various Express app routers.
 
+  - `migrations/`: Contains the files defining database migration steps.
+
   - `static/`: Contains the static resources for the Express app (note that
     these are overwritten with the compiled React app by the `yarn build`
     command).
@@ -74,6 +76,22 @@ expected to be accessible on port 27017 on localhost; if your setup is
 different provide the appropriate database URL as the `DATABASE_URL`
 environment variable.
 
+Migrations
+----------
+
+[`mongodb-migrations`][9] is used to handle updating the database state in
+production. You can generate a new migration file with `yarn mm create <name>`
+then edit the resulting file in `migrations/`. Like other parts of the app
+that relate to the database, the migrations will be applied the database found
+via the `DATABASE_URL` environment variable or, if that is not set, the
+MongoDB running on port 27017 on localhost.
+
+Note that the E2E tests will clear and re-seed the database, removing all
+collections *including* the `_migrations` collection that tracks which
+migrations have already been applied. Therefore if you want to restore a local
+working state after runningn them you can run `yarn mm migrate` to re-apply
+all migrations.
+
 Testing
 -------
 
@@ -100,11 +118,6 @@ Testing
     to start before testing it (and shuts it down afterwards). Note that you
     need to stop the app before running this command, but the database must
     still be running.
-
-Note that the E2E tests will clear and re-seed the database, removing all
-collections including the `_migrations` collection. Therefore if you want to
-restore a local working state afterwards you can run `yarn mm migrate` to re-
-apply all migrations.
 
 Deployment
 ----------
@@ -133,3 +146,4 @@ The following environment variables are handled by the application:
  [6]: https://travis-ci.org/textbook/cyf-library.svg?branch=master
  [7]: https://travis-ci.org/textbook/cyf-library
  [8]: https://www.mongodb.com/
+ [9]: http://npmjs.com/package/mongodb-migrations
