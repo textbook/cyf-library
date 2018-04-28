@@ -53,6 +53,8 @@ buildpack][1].
 The repository is set up so that most Yarn commands will work correctly from
 the root. The following are currently available:
 
+  - `yar add:client`: add a new dependency to the React app.
+
   - `yarn install:all`: runs installation for the root Express app then
     switches to `client/` and installs there too.
    
@@ -106,6 +108,16 @@ Deployment
     run `yarn build` manually first; otherwise, a warning will be shown and
     the app won't start (this is intended for production deployments where you
     don't want to ship the raw React code).
+
+Environment
+-----------
+
+The following environment variables are handled by the application:
+
+  - `DATABASE_URL`: The URL for connection to MongoDB (defaults to
+    `mongodb://localhost:27017/library`)
+
+  - `PORT`: The port to serve on (defaults to `3000`).
 
  [1]: https://github.com/cloudfoundry/nodejs-buildpack/releases/tag/v1.6.15
  [2]: https://codeyourfuture.github.io/syllabus-master/

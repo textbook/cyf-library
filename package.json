@@ -10,6 +10,7 @@
     "url": "http://hello.jonrshar.pe"
   },
   "scripts": {
+    "add:client": "cd client && yarn add",
     "build": "yarn build:client",
     "prebuild:client": "rimraf \"static/*\"",
     "build:client": "cd client && yarn build",
