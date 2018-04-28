@@ -33,7 +33,7 @@
     "test:watch:client": "cd client && yarn test",
     "test:watch:server": "yarn test:server --watch",
     "lint": "eslint .",
-    "preserve": "./preserve.sh",
+    "preserve": "./preserve.sh && yarn mm migrate",
     "serve": "cross-env NODE_ENV=production yarn start:server",
     "ship": "yarn lint && yarn test && yarn e2e:ci"
   },
@@ -44,6 +44,7 @@
     "express": "~4.16.0",
     "express-mongo-db": "^2.0.4",
     "mongodb": "^3.0.7",
+    "mongodb-migrations": "^0.8.5",
     "morgan": "~1.9.0"
   },
   "devDependencies": {

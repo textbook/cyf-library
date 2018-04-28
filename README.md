@@ -68,7 +68,7 @@ the root. The following are currently available:
     setting is used so that any API calls go to Express. In this mode, visit
     the app at http://localhost:4200 (React's start command will open this for
     you by default).
-    
+
 Both `start` and `dev` expect a MongoDB running locally. By default it's
 expected to be accessible on port 27017 on localhost; if your setup is
 different provide the appropriate database URL as the `DATABASE_URL`
@@ -101,13 +101,19 @@ Testing
     need to stop the app before running this command, but the database must
     still be running.
 
+Note that the E2E tests will clear and re-seed the database, removing all
+collections including the `_migrations` collection. Therefore if you want to
+restore a local working state afterwards you can run `yarn mm migrate` to re-
+apply all migrations.
+
 Deployment
 ----------
 
   - `yarn serve`: runs the Express app in production mode. Note that you must
     run `yarn build` manually first; otherwise, a warning will be shown and
     the app won't start (this is intended for production deployments where you
-    don't want to ship the raw React code).
+    don't want to ship the raw React code). This also runs database migrations
+    prior to starting the app.
 
 Environment
 -----------
