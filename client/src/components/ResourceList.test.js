@@ -4,8 +4,9 @@ import ResourceList from './ResourceList'
 
 describe('ResourceList', () => {
   const resources = [
-    {name: 'React', description: 'Official React homepage', url: 'https://reactjs.org'},
-    {name: 'Angular', description: 'Official Angular homepage', url: 'http://angular.io'},
+    {name: 'Some Title', description: 'A description', url: 'http://example.org'},
+    {name: 'Other Title', description: 'Some other context text', url: 'http://example.org'},
+    {name: 'Something Else', description: 'A different description', url: 'http://example.org'},
   ]
 
   let wrapper
@@ -24,7 +25,7 @@ describe('ResourceList', () => {
 
   it('renders the resources', () => {
     wrapper.update()
-    expect(wrapper.find('Resource').length).toEqual(2)
+    expect(wrapper.find('Resource').length).toEqual(resources.length)
   })
 
   it('renders a search box', () => {
@@ -32,13 +33,16 @@ describe('ResourceList', () => {
   })
 
   describe('when search performed', () => {
-    beforeEach(() => {
-      wrapper.find('Search').props().search('react')
+    it('should filter the resources by title', () => {
+      wrapper.find('Search').props().search('title')
+      wrapper.update()
+      expect(wrapper.find('Resource').length).toEqual(2)
     })
 
-    it('should filter the resources', () => {
+    it('should filter the resources by description', () => {
+      wrapper.find('Search').props().search('description')
       wrapper.update()
-      expect(wrapper.find('Resource').length).toEqual(1)
+      expect(wrapper.find('Resource').length).toEqual(2)
     })
   })
 })

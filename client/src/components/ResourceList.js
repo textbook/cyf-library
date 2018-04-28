@@ -21,8 +21,9 @@ class ResourceList extends Component {
     this.setState({ filtered })
   }
 
-  containsTerm ({ name }, searchTerm) {
+  containsTerm ({ name, description }, searchTerm) {
     return name.toLowerCase().indexOf(searchTerm) > -1
+      || description.toLowerCase().indexOf(searchTerm) > -1
   }
 
   render () {

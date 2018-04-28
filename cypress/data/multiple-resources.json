@@ -2,18 +2,23 @@
   "resources": [
     {
       "name": "React",
-      "description": "The official website for React",
+      "description": "A JavaScript library for building user interfaces",
       "url": "https://reactjs.org/"
     },
     {
       "name": "Angular",
-      "description": "The official website for Angular",
+      "description": "One framework. Mobile & desktop.",
       "url": "https://angular.io/"
     },
     {
       "name": "Node",
-      "description": "The official website for Node",
+      "description": "A JavaScript runtime built on Chrome's V8 JavaScript engine",
       "url": "https://nodejs.org/en/"
+    },
+    {
+      "name": "AngularJS",
+      "description": "The predecessor to Angular",
+      "url": "https://angularjs.org/"
     }
   ]
 }
