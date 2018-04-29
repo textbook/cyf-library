@@ -1,7 +1,7 @@
 client/
-cypress/
+e2e/
 node_modules/
-tests/
+server/tests/
 .eslintignore
 .eslintrc
 .gitignore

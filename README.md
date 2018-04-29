@@ -20,25 +20,27 @@ Structure
 The application structure may seem quite complex at first, so here is a guide
 to what the different parts are:
 
-  - `bin/`: Contains the `www.js` file to start the Express app.
-
   - `client/`: Contains the React frontend and its associated tests. Note that
     this is also a Node project with a `package.json`.
 
-  - `cypress/`: Contains the end-to-end test suite.
+  - `e2e/`: Contains the end-to-end test suite.
 
-  - `routes/`: Contains the various Express app routers.
+  - `server/`: Contains the Express app.
 
-  - `migrations/`: Contains the files defining database migration steps.
+      - `bin/`: Contains the `www.js` file to start the Express app.
 
-  - `static/`: Contains the static resources for the Express app (note that
-    these are overwritten with the compiled React app by the `yarn build`
-    command).
+      - `routes/`: Contains the various Express app routers.
 
-  - `tests/`: Contains the integration tests for the Express app.
+      - `migrations/`: Contains the files defining database migration steps.
 
-  - `app.js`: Contains the Express app definition, which configures the app
-    and sets up the routes.
+      - `static/`: Contains the static resources for the Express app (note that
+        these are overwritten with the compiled React app by the `yarn build`
+        command).
+
+      - `tests/`: Contains the integration tests for the Express app.
+
+      - `app.js`: Contains the Express app definition, which configures the app
+        and sets up the routes.
 
 Development
 -----------
@@ -60,7 +62,8 @@ the root. The following are currently available:
   - `yarn install:all`: runs installation for the root Express app then
     switches to `client/` and installs there too.
    
-  - `yarn build`: builds the React app and copies the files into `static/`.
+  - `yarn build`: builds the React app and copies the files into
+    `server/static/`.
 
   - `yarn start`: builds the React app then starts the Express app. In this
     mode, visit the app at http://localhost:3000.
@@ -81,9 +84,9 @@ Migrations
 
 [`mongodb-migrations`][9] is used to handle updating the database state in
 production. You can generate a new migration file with `yarn mm create <name>`
-then edit the resulting file in `migrations/`. Like other parts of the app
-that relate to the database, the migrations will be applied the database found
-via the `DATABASE_URL` environment variable or, if that is not set, the
+then edit the resulting file in `server/migrations/`. Like other parts of the
+app that relate to the database, the migrations will be applied the database
+found via the `DATABASE_URL` environment variable or, if that is not set, the
 MongoDB running on port 27017 on localhost.
 
 Note that the E2E tests will clear and re-seed the database, removing all

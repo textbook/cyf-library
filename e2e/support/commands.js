@@ -23,4 +23,4 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-Cypress.Commands.add('seed', (seedFile) => cy.exec(`node ./cypress/data/loader.js ./cypress/data/${seedFile}`))
+Cypress.Commands.add('seed', (seedFile) => cy.exec(`node ./e2e/data/loader.js ./e2e/data/${seedFile}`))

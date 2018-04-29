@@ -20,7 +20,7 @@ function appFactory (mongoUrl) {
   app.use('/api/resources', resourcesRouter)
 
   app.get('*', (req, res) => {
-    res.sendfile('./static/index.html')
+    res.sendfile(path.join(__dirname, 'static/index.html'))
   })
 
   return app
