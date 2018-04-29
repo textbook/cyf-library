@@ -50,4 +50,11 @@ describe('/resources', () => {
     const result = response.body[0]
     expect(result._id).toBe(undefined)
   })
+
+  test('should expose empty categories array for resources with no categories', async () => {
+    const response = await request(app).get(route)
+    expect(response.body.length).toBe(1)
+    const result = response.body[0]
+    expect(result.categories).toEqual([])
+  })
 })

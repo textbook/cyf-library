@@ -6,8 +6,9 @@ describe('Resource', () => {
   let wrapper
 
   const resource = {
-    name: 'My Cool Resource',
+    categories: ['category-one', 'category-two'],
     description: 'This is a really useful resource',
+    name: 'My Cool Resource',
     url: 'http://example.org',
   }
 
@@ -28,5 +29,12 @@ describe('Resource', () => {
   it('shows the resource URL', () => {
     expect(wrapper.find('[data-qa="resource-link"]').props().href)
       .toEqual(resource.url)
+  })
+
+  it('shows the resource categories', () => {
+    const categories = wrapper.find('[data-qa="resource-category"]').map(el => el.text().trim())
+    resource.categories.forEach(category => {
+      expect(categories).toContain(category)
+    })
   })
 })

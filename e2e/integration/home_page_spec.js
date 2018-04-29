@@ -20,6 +20,15 @@ describe('Home Page', () => {
     })
   })
 
+  it('should show the categories of the resource', () => {
+    const expectedCategories = ['react', 'javascript']
+    cy.get('[data-qa=resource]').first().then(element => {
+      cy.wrap(element).find('[data-qa=resource-category]').each((el, index) => {
+        cy.wrap(el).should('have.text', expectedCategories[index])
+      })
+    })
+  })
+
   it('should provide a link to the about page', () => {
     cy.get('[data-qa=nav-link][data-qa-value=about]').first().should('have.text', 'About').click()
     cy.get('[data-qa=page-title').should('have.text', 'About')

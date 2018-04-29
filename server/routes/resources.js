@@ -5,12 +5,12 @@ const router = express.Router()
 router.get('/', (req, res) => {
   req.db.collection('resources')
     .find({})
-    .toArray((err, docs) => {
+    .toArray((err, resources) => {
       if (err) {
         debug(err)
         return res.status(500).end()
       }
-      res.json(docs.map(({ _id, ...doc }) => doc))
+      res.json(resources.map(({ _id, categories, ...resource }) => ({ ...resource, categories: categories || [] })))
     })
 })
 
