@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
         debug(err)
         return res.status(500).end()
       }
-      res.json(docs.map(({ _id, ...doc}) => doc))
+      res.json(docs.map(({ _id, ...doc }) => doc))
     })
 })
 

@@ -13,7 +13,7 @@ const Header = () => (
     <h1 className="navbar-text d-none d-sm-inline-block" data-qa="site-title">Resource library</h1>
 
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" data-qa="nav-toggle">
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" data-qa="nav-toggle">
       <span className="navbar-toggler-icon"></span>
     </button>
 
@@ -21,11 +21,11 @@ const Header = () => (
       <ul className="navbar-nav">
         <li className="nav-item">
           <NavLink to="/" activeClassName="active" className="nav-link" data-qa="nav-link"
-                   data-qa-value="home" exact={true}>Home</NavLink>
+            data-qa-value="home" exact={true}>Home</NavLink>
         </li>
         <li className="nav-item">
           <NavLink to="/about" activeClassName="active" className="nav-link" data-qa="nav-link"
-                   data-qa-value="about" exact={true}>About</NavLink>
+            data-qa-value="about" exact={true}>About</NavLink>
         </li>
       </ul>
     </div>

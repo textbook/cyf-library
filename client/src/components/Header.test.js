@@ -16,7 +16,7 @@ describe('Header', () => {
 
   it('shows the title', () => {
     expect(wrapper.find('h1').text().trim().toLowerCase())
-        .toEqual('resource library')
+      .toEqual('resource library')
   })
 
   it('shows a navigation bar', () => {

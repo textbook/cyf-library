@@ -23,10 +23,10 @@ export default class Search extends Component {
     return (
       <div className="input-group">
         <input type="text" className="form-control" placeholder="Enter keywords to search resources" aria-label="Search"
-               data-qa="search-input" onChange={this.inputChanged.bind(this)} onKeyPress={this.keyPressed.bind(this)}/>
+          data-qa="search-input" onChange={this.inputChanged.bind(this)} onKeyPress={this.keyPressed.bind(this)}/>
         <div className="input-group-append">
           <button className="btn btn-outline-secondary" type="button" data-qa="search-button"
-                  onClick={this.buttonClicked.bind(this)}>Search
+            onClick={this.buttonClicked.bind(this)}>Search
           </button>
         </div>
       </div>

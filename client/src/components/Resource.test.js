@@ -17,16 +17,16 @@ describe('Resource', () => {
 
   it('shows the resource name', () => {
     expect(wrapper.find('[data-qa="resource-name"]').text().trim())
-        .toEqual(resource.name)
+      .toEqual(resource.name)
   })
 
   it('shows the resource description', () => {
     expect(wrapper.find('[data-qa="resource-description"]').text().trim())
-        .toEqual(resource.description)
+      .toEqual(resource.description)
   })
 
   it('shows the resource URL', () => {
     expect(wrapper.find('[data-qa="resource-link"]').props().href)
-        .toEqual(resource.url)
+      .toEqual(resource.url)
   })
 })

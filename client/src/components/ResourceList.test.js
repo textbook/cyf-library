@@ -1,12 +1,12 @@
 import React from 'react'
-import {shallow} from 'enzyme'
+import { shallow } from 'enzyme'
 import ResourceList from './ResourceList'
 
 describe('ResourceList', () => {
   const resources = [
-    {name: 'Some Title', description: 'A description', url: 'http://example.org'},
-    {name: 'Other Title', description: 'Some other context text', url: 'http://example.org'},
-    {name: 'Something Else', description: 'A different description', url: 'http://example.org'},
+    { name: 'Some Title', description: 'A description', url: 'http://example.org' },
+    { name: 'Other Title', description: 'Some other context text', url: 'http://example.org' },
+    { name: 'Something Else', description: 'A different description', url: 'http://example.org' },
   ]
 
   let wrapper

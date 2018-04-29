@@ -23,6 +23,10 @@
         "ignoreRestSiblings": true
       }
     ],
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
     "operator-linebreak": [
       "error",
       "before"

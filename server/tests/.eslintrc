@@ -1,8 +1,8 @@
 {
-  "plugins": ["jest"],
   "env": {
     "jest/globals": true
   },
+  "plugins": ["jest"],
   "rules": {
     "no-console": "off"
   }
