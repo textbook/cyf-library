@@ -1,5 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
+import createRouterContext from 'react-router-test-context'
 import Resource from './Resource'
 
 describe('Resource', () => {
@@ -13,7 +14,7 @@ describe('Resource', () => {
   }
 
   beforeEach(() => {
-    wrapper = shallow(<Resource resource={resource}/>)
+    wrapper = shallow(<Resource resource={resource}/>, { context: createRouterContext() })
   })
 
   it('shows the resource name', () => {
@@ -31,10 +32,10 @@ describe('Resource', () => {
       .toEqual(resource.url)
   })
 
-  it('shows the resource categories', () => {
-    const categories = wrapper.find('[data-qa="resource-category"]').map(el => el.text().trim())
-    resource.categories.forEach(category => {
-      expect(categories).toContain(category)
+  it('shows the resource category links', () => {
+    wrapper.find('[data-qa="resource-category"]').forEach((element, index) => {
+      expect(element.props().children.trim()).toEqual(resource.categories[index])
+      expect(element.props().to).toEqual(`/category/${resource.categories[index]}`)
     })
   })
 })

@@ -2,8 +2,9 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import createRouterContext from 'react-router-test-context'
 import App from './App'
-import ResourceList from './components/ResourceList'
 import About from './components/About'
+import Category from './components/Category'
+import Home from './components/Home'
 
 describe('App', () => {
   const resources = [
@@ -22,10 +23,12 @@ describe('App', () => {
 
   it('renders the routes', () => {
     const routes = wrapper.find('Route')
-    expect(routes.length).toBe(2)
+    expect(routes.length).toBe(3)
     expect(routes.get(0).props.path).toBe('/')
-    expect(routes.get(0).props.component).toBe(ResourceList)
+    expect(routes.get(0).props.component).toBe(Home)
     expect(routes.get(1).props.path).toBe('/about')
     expect(routes.get(1).props.component).toBe(About)
+    expect(routes.get(2).props.path).toBe('/category/:category')
+    expect(routes.get(2).props.component).toBe(Category)
   })
 })

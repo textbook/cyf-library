@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-import './App.css'
-import Header from './components/Header'
 import About from './components/About'
-import ResourceList from './components/ResourceList'
+import Category from './components/Category'
+import Header from './components/Header'
+import Home from './components/Home'
 
 class App extends Component {
   constructor (props) {
@@ -19,8 +19,9 @@ class App extends Component {
 
           <main className="container pt-5">
             <div className="col-md-8 offset-md-2">
-              <Route exact path="/" component={ResourceList} />
+              <Route exact path="/" component={Home} />
               <Route exact path="/about" component={About} />
+              <Route exact path="/category/:category" component={Category} />
             </div>
           </main>
         </div>

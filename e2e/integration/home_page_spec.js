@@ -33,4 +33,9 @@ describe('Home Page', () => {
     cy.get('[data-qa=nav-link][data-qa-value=about]').first().should('have.text', 'About').click()
     cy.get('[data-qa=page-title').should('have.text', 'About')
   })
+
+  it('should allow the user to navigate by category', () => {
+    cy.get('[data-qa=resource-category][data-qa-value=react]').click()
+    cy.get('[data-qa=page-title').should('have.text', 'Category: react')
+  })
 })

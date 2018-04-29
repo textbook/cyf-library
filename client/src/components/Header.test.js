@@ -11,7 +11,7 @@ describe('Header', () => {
   })
 
   it('shows the CYF logo', () => {
-    expect(wrapper.find('img[src]').props().src).toEqual('cyf_logo.png')
+    expect(wrapper.find('img[src]').props().src).toEqual('/cyf_logo.png')
   })
 
   it('shows the title', () => {

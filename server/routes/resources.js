@@ -3,8 +3,12 @@ const debug = require('debug')('library:server')
 const router = express.Router()
 
 router.get('/', (req, res) => {
+  const search = {}
+  if (req.query.category) {
+    search.categories = req.query.category
+  }
   req.db.collection('resources')
-    .find({})
+    .find(search)
     .toArray((err, resources) => {
       if (err) {
         debug(err)

@@ -1,18 +1,15 @@
 import React, { Component } from 'react'
-import './ResourceList.css'
 import Resource from './Resource'
 import Search from './Search'
 
 class ResourceList extends Component {
+  static getDerivedStateFromProps (nextProps, prevState) {
+    return { ...prevState, resources: nextProps.resources, filtered: nextProps.resources }
+  }
+
   constructor (props) {
     super(props)
     this.state = { resources: [], filtered: [] }
-  }
-
-  componentDidMount () {
-    fetch('/api/resources')
-      .then(res => res.json())
-      .then(data => this.setState({ resources: data, filtered: data }))
   }
 
   handleSearch (searchTerm) {

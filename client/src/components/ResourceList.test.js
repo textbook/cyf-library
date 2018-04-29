@@ -12,15 +12,7 @@ describe('ResourceList', () => {
   let wrapper
 
   beforeEach(() => {
-    fetch.resetMocks()
-    fetch.mockResponseOnce(JSON.stringify(resources))
-
-    wrapper = shallow(<ResourceList/>)
-  })
-
-  it('requests resources from the backend', () => {
-    expect(fetch.mock.calls.length).toEqual(1)
-    expect(fetch.mock.calls[0][0]).toEqual('/api/resources')
+    wrapper = shallow(<ResourceList resources={resources}/>)
   })
 
   it('renders the resources', () => {
