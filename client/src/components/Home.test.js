@@ -1,6 +1,14 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import Home from './Home'
+import ResourceService from '../services/ResourceService'
+
+const mockGetResources = jest.fn()
+jest.mock('../services/ResourceService', () => {
+  return jest.fn().mockImplementation(() => {
+    return { getResources: mockGetResources }
+  })
+})
 
 describe('Home', () => {
   const resources = [
@@ -12,15 +20,16 @@ describe('Home', () => {
   let wrapper
 
   beforeEach(() => {
-    fetch.resetMocks()
-    fetch.mockResponseOnce(JSON.stringify(resources))
+    ResourceService.mockClear()
+    mockGetResources.mockClear()
+    mockGetResources.mockReturnValueOnce(Promise.resolve(resources))
 
     wrapper = shallow(<Home/>)
   })
 
-  it('requests resources from the backend', () => {
-    expect(fetch.mock.calls.length).toEqual(1)
-    expect(fetch.mock.calls[0][0]).toEqual('/api/resources')
+
+  it('requests resources from the service', () => {
+    expect(mockGetResources).toBeCalledWith()
   })
 
   it('renders the resource list', () => {

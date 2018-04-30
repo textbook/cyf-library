@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import ResourceList from './ResourceList'
+import ResourceService from '../services/ResourceService'
 import './Category.css'
 
 export default class Category extends Component {
+  service = new ResourceService()
+
   constructor (props) {
     super(props)
     this.state = { resources: [], category: props.match.params.category }
@@ -21,9 +24,7 @@ export default class Category extends Component {
   }
 
   updateResources (category) {
-    fetch(`/api/resources?category=${category}`)
-      .then(res => res.json())
-      .then(data => this.setState({ resources: data }))
+    this.service.getResourcesByCategory(category).then(data => this.setState({ resources: data }))
   }
 
   render () {

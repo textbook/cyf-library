@@ -1,6 +1,14 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import Category from './Category'
+import ResourceService from '../services/ResourceService'
+
+const mockGetResourcesByCategory = jest.fn()
+jest.mock('../services/ResourceService', () => {
+  return jest.fn().mockImplementation(() => {
+    return { getResourcesByCategory: mockGetResourcesByCategory }
+  })
+})
 
 describe('Category', () => {
   const resources = [
@@ -12,15 +20,15 @@ describe('Category', () => {
   let wrapper
 
   beforeEach(() => {
-    fetch.resetMocks()
-    fetch.mockResponseOnce(JSON.stringify(resources))
+    ResourceService.mockClear()
+    mockGetResourcesByCategory.mockClear()
+    mockGetResourcesByCategory.mockReturnValueOnce(Promise.resolve(resources))
 
     wrapper = shallow(<Category match={{ params: { category: 'html' } }}/>)
   })
 
-  it('requests resources from the backend', () => {
-    expect(fetch.mock.calls.length).toEqual(1)
-    expect(fetch.mock.calls[0][0]).toEqual('/api/resources?category=html')
+  it('requests resources from the service', () => {
+    expect(mockGetResourcesByCategory).toBeCalledWith('html')
   })
 
   it('renders the resource list', () => {
@@ -33,13 +41,11 @@ describe('Category', () => {
   })
 
   it('updates the resources when the route changes', () => {
-    fetch.resetMocks()
-    fetch.mockResponseOnce('[]')
+    mockGetResourcesByCategory.mockReturnValueOnce(Promise.resolve([]))
 
     wrapper.setProps({ match: { params: { category: 'javascript' } } })
 
-    expect(fetch.mock.calls.length).toEqual(1)
-    expect(fetch.mock.calls[0][0]).toEqual('/api/resources?category=javascript')
+    expect(mockGetResourcesByCategory).toBeCalledWith('javascript')
     expect(wrapper.find('[data-qa="page-title"]').text().trim()).toEqual('Category: javascript')
   })
 
