@@ -22,11 +22,8 @@ describe('ResourceService', () => {
       expect(fetch.mock.calls[0][0]).toEqual('/api/resources')
     })
 
-    it('exposes the resources as a Promise', done => {
-      service.getResources().then(result => {
-        expect(result).toEqual(resources)
-        done()
-      })
+    it('exposes the resources as a Promise', () => {
+      return expect(service.getResources()).resolves.toEqual(resources)
     })
   })
 
@@ -37,11 +34,8 @@ describe('ResourceService', () => {
       expect(fetch.mock.calls[0][0]).toEqual('/api/resources?category=html')
     })
 
-    it('exposes the resources as a Promise', done => {
-      service.getResourcesByCategory('html').then(result => {
-        expect(result).toEqual(resources)
-        done()
-      })
+    it('exposes the resources as a Promise', () => {
+      return expect(service.getResourcesByCategory('html')).resolves.toEqual(resources)
     })
   })
 })
