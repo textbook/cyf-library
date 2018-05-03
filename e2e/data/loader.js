@@ -29,7 +29,12 @@ function clear(db) {
 
 function seed(db, seedFile) {
   return readJsonFile(seedFile)
-    .then(content => Object.keys(content).map(collection => db.collection(collection).insertMany(content[collection])))
+    .then(content => Object.keys(content).map(collection => {
+      const rows = content[collection]
+      const now = new Date()
+      rows.forEach((row, index) => row.created = new Date(now.getTime() + (1000 * index)))
+      return db.collection(collection).insertMany(rows)
+    }))
     .then(promises => Promise.all(promises))
 }
 

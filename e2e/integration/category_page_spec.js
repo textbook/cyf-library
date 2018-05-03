@@ -10,7 +10,7 @@ describe('Category Page', () => {
   })
 
   it('should show the specified resources', () => {
-    const expectedNames = ['Angular', 'AngularJS']
+    const expectedNames = ['AngularJS', 'Angular']
     cy.get('[data-qa=resource]').each((element, index) => {
       cy.wrap(element).find('[data-qa=resource-name]').should('have.text', expectedNames[index])
     })

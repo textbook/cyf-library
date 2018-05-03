@@ -4,9 +4,9 @@ import ResourceList from './ResourceList'
 
 describe('ResourceList', () => {
   const resources = [
-    { name: 'Some Title', description: 'A description', url: 'http://example.org' },
-    { name: 'Other Title', description: 'Some other context text', url: 'http://example.org' },
-    { name: 'Something Else', description: 'A different description', url: 'http://example.org' },
+    { name: 'Some Title', description: 'A description', url: 'http://example.org', created: 123 },
+    { name: 'Other Title', description: 'Some other context text', url: 'http://example.org', created: 122 },
+    { name: 'Something Else', description: 'A different description', url: 'http://example.org', created: 121 },
   ]
 
   let wrapper
@@ -35,6 +35,15 @@ describe('ResourceList', () => {
       wrapper.find('Search').props().search('description')
       wrapper.update()
       expect(wrapper.find('Resource').length).toEqual(2)
+    })
+  })
+
+  describe('when sort changed', () => {
+    it('should re-order the resources', () => {
+      wrapper.find('Sort').props().sort((r1, r2) => r1.name > r2.name)
+      wrapper.update()
+      expect(wrapper.find('Resource').map(r => r.props().resource.name))
+        .toEqual(['Other Title', 'Some Title', 'Something Else'])
     })
   })
 })

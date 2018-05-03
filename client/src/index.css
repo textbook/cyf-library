@@ -18,3 +18,13 @@ h3 {
 a, a:hover, a:focus {
   color: #2ba560
 }
+
+.form-row > div {
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 576px) {
+  .form-row > div {
+    margin-bottom: 0;
+  }
+}

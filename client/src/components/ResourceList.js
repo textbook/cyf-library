@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Resource from './Resource'
 import Search from './Search'
+import Sort from './Sort'
 
 class ResourceList extends Component {
   static getDerivedStateFromProps (nextProps, prevState) {
@@ -9,27 +10,39 @@ class ResourceList extends Component {
 
   constructor (props) {
     super(props)
-    this.state = { resources: [], filtered: [] }
+    this.state = { resources: [], searchTerm: '', sort: () => 0 }
   }
 
   handleSearch (searchTerm) {
-    const term = searchTerm.toLowerCase()
-    const filtered = this.state.resources.filter(res => this.containsTerm(res, term))
-    this.setState({ filtered })
+    this.setState({ searchTerm })
   }
 
-  containsTerm ({ name, description }, searchTerm) {
-    return name.toLowerCase().indexOf(searchTerm) > -1
-      || description.toLowerCase().indexOf(searchTerm) > -1
+  handleSort (order) {
+    this.setState({ order })
+  }
+
+  containsSearchTerm ({ name, description }) {
+    return name.toLowerCase().indexOf(this.state.searchTerm) > -1
+      || description.toLowerCase().indexOf(this.state.searchTerm) > -1
   }
 
   render () {
+    const filtered = this.state.resources
+      .filter(res => this.containsSearchTerm(res))
+      .sort(this.state.order)
     return (
       <div>
         <div className="form-group">
-          <Search search={this.handleSearch.bind(this)}/>
+          <div className="form-row">
+            <div className="col-sm-6">
+              <Search search={this.handleSearch.bind(this)}/>
+            </div>
+            <div className="col-sm-6">
+              <Sort sort={this.handleSort.bind(this)}/>
+            </div>
+          </div>
         </div>
-        {this.state.filtered.map((resource, index) => (
+        {filtered.map((resource, index) => (
           <Resource key={index} resource={resource}/>
         ))}
       </div>

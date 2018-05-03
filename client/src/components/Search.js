@@ -16,13 +16,13 @@ export default class Search extends Component {
   }
 
   performSearch () {
-    this.props.search(this.state.searchTerm)
+    this.props.search(this.state.searchTerm.toLowerCase())
   }
 
   render () {
     return (
       <div className="input-group">
-        <input type="text" className="form-control" placeholder="Enter keywords to search resources" aria-label="Search"
+        <input type="text" className="form-control" placeholder="Enter keywords" aria-label="Search"
           data-qa="search-input" onChange={this.inputChanged.bind(this)} onKeyPress={this.keyPressed.bind(this)}/>
         <div className="input-group-append">
           <button className="btn btn-outline-secondary" type="button" data-qa="search-button"

@@ -29,4 +29,14 @@ describe('Search', () => {
     expect(callback.mock.calls.length).toBe(1)
     expect(callback.mock.calls[0][0]).toBe(searchTerm)
   })
+
+  it('should lowercase the search term', () => {
+    wrapper
+      .find('[data-qa="search-input"]')
+      .simulate('change', { target: { value: 'HeLLo WorlD' } })
+    wrapper.find('[data-qa="search-button"]').simulate('click')
+
+    expect(callback.mock.calls.length).toBe(1)
+    expect(callback.mock.calls[0][0]).toBe('hello world')
+  })
 })

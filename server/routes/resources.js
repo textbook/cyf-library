@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
   }
   req.db.collection('resources')
     .find(search)
+    .sort({ created: -1 })
     .toArray((err, resources) => {
       if (err) {
         debug(err)

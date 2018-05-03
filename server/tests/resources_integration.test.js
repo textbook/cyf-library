@@ -7,14 +7,16 @@ describe('/resources', () => {
   const reactResource = {
     description: 'The official website for React',
     name: 'React',
-    url: 'https://reactjs.org/'
+    url: 'https://reactjs.org/',
+    created: new Date(981173106000)
   }
 
   const angularResource = {
     categories: ['angular'],
     description: 'The official website for Angular',
     name: 'Angular',
-    url: 'https://angular.io/'
+    url: 'https://angular.io/',
+    created: new Date(981183906000)
   }
 
   const resources = [reactResource, angularResource]
@@ -48,9 +50,17 @@ describe('/resources', () => {
     const response = await request(app).get(route)
     expect(response.body.length).toBe(resources.length)
     const first = response.body[0]
-    expect(first.name).toBe(resources[0].name)
-    expect(first.description).toBe(resources[0].description)
-    expect(first.url).toBe(resources[0].url)
+    expect(first.name).toBe(angularResource.name)
+    expect(first.description).toBe(angularResource.description)
+    expect(first.url).toBe(angularResource.url)
+  })
+
+  test('should order resources by descending creation time', async () => {
+    const response = await request(app).get(route)
+    const resources = response.body
+
+    expect(resources.map(resource => resource.name))
+      .toEqual(resources.sort((a, b) => b.created - a.created).map(resource => resource.name))
   })
 
   test('should not expose Mongo object ID', async () => {
@@ -61,8 +71,8 @@ describe('/resources', () => {
 
   test('should expose empty categories array for resources with no categories', async () => {
     const response = await request(app).get(route)
-    const first = response.body[0]
-    expect(first.categories).toEqual([])
+    const resource = response.body.filter(resource => resource.name === 'React')[0]
+    expect(resource.categories).toEqual([])
   })
 
   test('should filter by category with query parameter', async () => {
