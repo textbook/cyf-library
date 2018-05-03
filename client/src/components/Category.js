@@ -8,7 +8,7 @@ export default class Category extends Component {
 
   constructor (props) {
     super(props)
-    this.state = { resources: [], category: props.match.params.category }
+    this.state = { resources: [], category: props.match.params.category, loaded: false }
   }
 
   componentDidMount () {
@@ -22,22 +22,26 @@ export default class Category extends Component {
     }
   }
 
+  showWarning () {
+    return this.state.loaded && this.state.resources.length === 0
+  }
+
   updateResources (category) {
     this.service.getResourcesByCategory(category)
-      .then(resources => this.setState({ resources, category }))
+      .then(resources => this.setState({ resources, category, loaded: true }))
   }
 
   render () {
     return (
       <div>
         <h2 data-qa="page-title">Category: {this.state.category}</h2>
-        {this.state.resources.length > 0
-          ? <ResourceList resources={this.state.resources}/>
-          : (
+        {this.showWarning()
+          ? (
             <div className="alert alert-warning" role="alert" data-qa="no-resources-warning">
               No resources found for specified category.
             </div>
           )
+          : <ResourceList resources={this.state.resources}/>
         }
       </div>
     )

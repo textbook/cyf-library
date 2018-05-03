@@ -63,4 +63,8 @@ describe('Category', () => {
         .toEqual('No resources found for specified category.')
     }, done)
   })
+
+  it('does not show a warning before the page has finished loading', () => {
+    expect(wrapper.find('[data-qa="no-resources-warning"]').length).toEqual(0)
+  })
 })
