@@ -1,14 +1,11 @@
-import React from 'react'
 import { shallow } from 'enzyme'
-import Category from './Category'
-import ResourceService from '../services/ResourceService'
+import Deferred from 'promise-deferred'
+import React from 'react'
 
-const mockGetResourcesByCategory = jest.fn()
-jest.mock('../services/ResourceService', () => {
-  return jest.fn().mockImplementation(() => {
-    return { getResourcesByCategory: mockGetResourcesByCategory }
-  })
-})
+import Category from './Category'
+import ResourceService, { mockGetResourcesByCategory } from '../services/ResourceService'
+
+jest.mock('../services/ResourceService')
 
 describe('Category', () => {
   const resources = [
@@ -18,42 +15,52 @@ describe('Category', () => {
   ]
 
   let wrapper
+  let deferred
 
-  beforeEach(() => {
+  beforeEach(async () => {
+    deferred = new Deferred()
     ResourceService.mockClear()
     mockGetResourcesByCategory.mockClear()
-    mockGetResourcesByCategory.mockReturnValueOnce(Promise.resolve(resources))
+    mockGetResourcesByCategory.mockReturnValue(deferred.promise)
 
-    wrapper = shallow(<Category match={{ params: { category: 'html' } }}/>)
+    wrapper = await shallow(<Category match={{ params: { category: 'html' } }}/>)
   })
 
   it('requests resources from the service', () => {
     expect(mockGetResourcesByCategory).toBeCalledWith('html')
   })
 
-  it('renders the resource list', () => {
-    wrapper.update()
-    expect(wrapper.find('ResourceList').props().resources).toEqual(resources)
+  it('renders the resource list', done => {
+    deferred.resolve(resources)
+
+    assertLater(() => {
+      wrapper.update()
+      expect(wrapper.find('ResourceList').props().resources).toEqual(resources)
+    }, done)
   })
 
   it('renders an appropriate header', () => {
     expect(wrapper.find('[data-qa="page-title"]').text().trim()).toEqual('Category: html')
   })
 
-  it('updates the resources when the route changes', () => {
-    mockGetResourcesByCategory.mockReturnValueOnce(Promise.resolve([]))
-
+  it('updates the resources when the route changes', done => {
     wrapper.setProps({ match: { params: { category: 'javascript' } } })
+    deferred.resolve([])
 
-    expect(mockGetResourcesByCategory).toBeCalledWith('javascript')
-    expect(wrapper.find('[data-qa="page-title"]').text().trim()).toEqual('Category: javascript')
+    assertLater(() => {
+      wrapper.update()
+      expect(mockGetResourcesByCategory).toBeCalledWith('javascript')
+      expect(wrapper.find('[data-qa="page-title"]').text().trim()).toEqual('Category: javascript')
+    }, done)
   })
 
-  it('shows a warning when the resource list is empty', () => {
-    wrapper.setState({ resources: [] })
-    wrapper.update()
+  it('shows a warning when the resource list is empty', done => {
+    deferred.resolve([])
 
-    expect(wrapper.find('[data-qa="no-resources-warning"]').text().trim())
-      .toEqual('No resources found for specified category.')
+    assertLater(() => {
+      wrapper.update()
+      expect(wrapper.find('[data-qa="no-resources-warning"]').text().trim())
+        .toEqual('No resources found for specified category.')
+    }, done)
   })
 })

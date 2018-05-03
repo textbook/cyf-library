@@ -11,7 +11,7 @@ export default class Home extends Component {
   }
 
   componentDidMount () {
-    this.service.getResources().then(data => this.setState({ resources: data }))
+    this.service.getResources().then(resources => this.setState({ resources }))
   }
 
   render () {

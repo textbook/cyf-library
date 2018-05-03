@@ -1,14 +1,11 @@
-import React from 'react'
 import { shallow } from 'enzyme'
-import Home from './Home'
-import ResourceService from '../services/ResourceService'
+import Deferred from 'promise-deferred'
+import React from 'react'
 
-const mockGetResources = jest.fn()
-jest.mock('../services/ResourceService', () => {
-  return jest.fn().mockImplementation(() => {
-    return { getResources: mockGetResources }
-  })
-})
+import Home from './Home'
+import ResourceService, { mockGetResources } from '../services/ResourceService'
+
+jest.mock('../services/ResourceService')
 
 describe('Home', () => {
   const resources = [
@@ -18,11 +15,13 @@ describe('Home', () => {
   ]
 
   let wrapper
+  let deferred
 
   beforeEach(() => {
+    deferred = new Deferred()
     ResourceService.mockClear()
     mockGetResources.mockClear()
-    mockGetResources.mockReturnValueOnce(Promise.resolve(resources))
+    mockGetResources.mockReturnValueOnce(deferred.promise)
 
     wrapper = shallow(<Home/>)
   })
@@ -32,8 +31,12 @@ describe('Home', () => {
     expect(mockGetResources).toBeCalledWith()
   })
 
-  it('renders the resource list', () => {
-    wrapper.update()
-    expect(wrapper.find('ResourceList').props().resources).toEqual(resources)
+  it('renders the resource list', done => {
+    deferred.resolve(resources)
+
+    assertLater(() => {
+      wrapper.update()
+      expect(wrapper.find('ResourceList').props().resources).toEqual(resources)
+    }, done)
   })
 })

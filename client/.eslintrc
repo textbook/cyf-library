@@ -1,6 +1,23 @@
 {
-  "extends": ["react-app", "../.eslintrc"],
   "env": {
     "node": false
-  }
+  },
+  "extends": [
+    "react-app",
+    "../.eslintrc"
+  ],
+  "overrides": [
+    {
+      "env": {
+        "node": true
+      },
+      "files": [
+        "src/**/*.test.js",
+        "src/setupTests.js"
+      ],
+      "globals": {
+        "assertLater": true
+      }
+    }
+  ]
 }

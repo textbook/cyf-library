@@ -18,13 +18,13 @@ export default class Category extends Component {
   componentDidUpdate (prevProps) {
     if (prevProps.match.params.category !== this.props.match.params.category) {
       const category = this.props.match.params.category
-      this.setState({ category })
       this.updateResources(category)
     }
   }
 
   updateResources (category) {
-    this.service.getResourcesByCategory(category).then(data => this.setState({ resources: data }))
+    this.service.getResourcesByCategory(category)
+      .then(resources => this.setState({ resources, category }))
   }
 
   render () {
