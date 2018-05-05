@@ -4,7 +4,7 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 
-const resourcesRouter = require('./routes/resources')
+const resourcesRouter = require('./resources/routes')
 
 function appFactory (mongoUrl) {
   const app = express()

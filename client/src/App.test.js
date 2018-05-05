@@ -1,10 +1,11 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import createRouterContext from 'react-router-test-context'
+
 import App from './App'
-import About from './components/About'
-import Category from './components/Category'
-import Home from './components/Home'
+
+import { About } from './about'
+import { Category, Home } from './resources'
 
 describe('App', () => {
   const resources = [

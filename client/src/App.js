@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-import About from './components/About'
-import Category from './components/Category'
-import Header from './components/Header'
-import Home from './components/Home'
+
+import Header from './Header'
+
+import { About } from './about'
+import { Category, Home } from './resources'
 
 class App extends Component {
   constructor (props) {

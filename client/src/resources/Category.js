@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+
 import ResourceList from './ResourceList'
-import ResourceService from '../services/ResourceService'
+import ResourceService from './ResourceService'
+
 import './Category.css'
 
 export default class Category extends Component {

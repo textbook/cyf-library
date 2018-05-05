@@ -3,9 +3,9 @@ import Deferred from 'promise-deferred'
 import React from 'react'
 
 import Home from './Home'
-import ResourceService, { mockGetResources } from '../services/ResourceService'
+import ResourceService, { mockGetResources } from './ResourceService'
 
-jest.mock('../services/ResourceService')
+jest.mock('./ResourceService')
 
 describe('Home', () => {
   const resources = [

@@ -25,11 +25,8 @@ to what the different parts are:
 
   - `e2e/`: Contains the end-to-end test suite.
 
-  - `server/`: Contains the Express app.
-
-      - `bin/`: Contains the `www.js` file to start the Express app.
-
-      - `routes/`: Contains the various Express app routers.
+  - `server/`: Contains the Express app. Other than the feature directories
+    (e.g. `resources`) this directory includes:
 
       - `migrations/`: Contains the files defining database migration steps.
 
@@ -41,6 +38,8 @@ to what the different parts are:
 
       - `app.js`: Contains the Express app definition, which configures the app
         and sets up the routes.
+
+      - `server.js`: Contains the server which loads and starts the app.
 
 Development
 -----------

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+
 import ResourceList from './ResourceList'
-import ResourceService from '../services/ResourceService'
+import ResourceService from './ResourceService'
 
 export default class Home extends Component {
   service = new ResourceService()

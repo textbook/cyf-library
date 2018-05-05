@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-const appFactory = require('../app')
+const appFactory = require('./app')
 const debug = require('debug')('library:server')
 const http = require('http')
 
