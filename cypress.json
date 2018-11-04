@@ -6,5 +6,5 @@
   "supportFile": "./e2e/support/index.js",
   "screenshotsFolder": "./e2e/screenshots",
   "videosFolder": "./e2e/videos",
-  "videoRecording": false
+  "video": false
 }

@@ -6,7 +6,7 @@
   "license": "ISC",
   "author": {
     "name": "Jonathan Sharpe",
-    "email": "mail@jonrsharpe",
+    "email": "mail@jonrshar.pe",
     "url": "http://hello.jonrshar.pe"
   },
   "scripts": {
@@ -29,7 +29,7 @@
     "e2e:ci:safe": "wait-on -l -t 30000 http-get://localhost:3000 && yarn e2e",
     "test": "yarn test:server && yarn test:client",
     "test:client": "cd client && cross-env CI=true yarn test",
-    "test:server": "jest --config ./server/tests/jest.config.js",
+    "test:server": "jest --detectOpenHandles --config ./server/tests/jest.config.js",
     "test:watch:client": "cd client && yarn test",
     "test:watch:server": "yarn test:server --watch",
     "lint": "eslint .",
@@ -41,40 +41,40 @@
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
-    "cross-env": "^5.1.4",
-    "debug": "~2.6.9",
-    "express": "~4.16.0",
+    "cross-env": "^5.2.0",
+    "debug": "^4.1.0",
+    "express": "^4.16.3",
     "express-mongo-db": "^2.0.4",
-    "mongodb": "^3.0.7",
+    "mongodb": "^3.1.6",
     "mongodb-migrations": "^0.8.5",
-    "morgan": "~1.9.0"
+    "morgan": "^1.9.1"
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "concurrently": "^3.5.1",
-    "copy": "^0.3.1",
-    "cypress": "^2.1.0",
-    "eslint": "^4.19.1",
-    "eslint-config-react-app": "^2.1.0",
+    "babel-eslint": "^10.0.1",
+    "concurrently": "^4.0.1",
+    "copy": "^0.3.2",
+    "cypress": "^3.1.0",
+    "eslint": "^5.6.1",
+    "eslint-config-react-app": "^3.0.3",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-cypress": "^2.0.1",
-    "eslint-plugin-flowtype": "^2.34.1",
+    "eslint-plugin-flowtype": "^2.50.3",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jest": "^21.15.1",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-react": "^7.1.0",
     "eslint-plugin-standard": "^3.0.1",
-    "jest": "^22.4.3",
-    "mongodb-memory-server": "^1.7.3",
+    "jest": "23.6.0",
+    "mongodb-memory-server": "^2.6.2",
     "rimraf": "^2.6.2",
-    "supertest": "^3.0.0",
-    "wait-on": "^2.1.0"
+    "supertest": "^3.3.0",
+    "wait-on": "^3.0.1"
   },
   "engines": {
-    "node": "8.9.4",
-    "npm": "5.6.0",
-    "yarn": "1.2.1"
+    "node": "~10.12.0",
+    "npm": "6.4.1",
+    "yarn": "1.10.1"
   }
 }
