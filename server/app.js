@@ -5,6 +5,8 @@ const logger = require("morgan");
 
 const resourcesRouter = require("./resources/routes");
 
+const API_BASE_PATH = "/api";
+
 function appFactory(database) {
   const app = express();
 
@@ -19,9 +21,12 @@ function appFactory(database) {
     next();
   });
 
-  app.use("/api/resources", resourcesRouter);
+  app.use(`${API_BASE_PATH}/resources`, resourcesRouter);
 
-  app.get("*", (req, res) => {
+  app.get("*", (req, res, next) => {
+    if (req.url.startsWith(API_BASE_PATH)) {
+      return next();
+    }
     res.sendFile(path.join(__dirname, "static/index.html"));
   });
 
