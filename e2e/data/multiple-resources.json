@@ -4,25 +4,29 @@
       "categories": ["react", "javascript"],
       "description": "A JavaScript library for building user interfaces",
       "name": "React",
-      "url": "https://reactjs.org/"
+      "url": "https://reactjs.org/",
+      "creator": "textbook"
     },
     {
       "categories": ["angular"],
       "description": "One framework. Mobile & desktop.",
       "name": "Angular",
-      "url": "https://angular.io/"
+      "url": "https://angular.io/",
+      "creator": "textbook"
     },
     {
       "categories": ["javascript", "node"],
       "description": "A JavaScript runtime built on Chrome's V8 JavaScript engine",
       "name": "Node",
-      "url": "https://nodejs.org/en/"
+      "url": "https://nodejs.org/en/",
+      "creator": "textbook"
     },
     {
       "categories": ["angular", "javascript"],
       "description": "The predecessor to Angular",
       "name": "AngularJS",
-      "url": "https://angularjs.org/"
+      "url": "https://angularjs.org/",
+      "creator": "textbook"
     }
   ]
 }

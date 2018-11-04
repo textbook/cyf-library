@@ -1,7 +1,11 @@
 .card {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
-.badge {
-    margin-left: 0.5em;
+.badge:not(:first-of-type) {
+  margin-left: 0.5em;
+}
+
+[data-qa="resource-creator"] > span {
+  margin-left: 0.25em;
 }

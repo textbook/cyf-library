@@ -4,7 +4,8 @@
       "categories": ["react", "javascript"],
       "description": "The official website for React",
       "name": "React",
-      "url": "https://reactjs.org/"
+      "url": "https://reactjs.org/",
+      "creator": "textbook"
     }
   ]
 }

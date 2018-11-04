@@ -14,6 +14,7 @@ describe("Resource", () => {
     name: "My Cool Resource",
     url: "http://example.org",
     created: "2018-11-03T15:19:29.000Z",
+    creator: "textbook",
   };
 
   beforeEach(() => {
@@ -43,6 +44,18 @@ describe("Resource", () => {
         .text()
         .trim()
     ).toEqual("Added a day ago");
+  });
+
+  it("shows who the resource was created by", () => {
+    expect(wrapper.find("[data-qa=\"resource-creator\"]").props().href).toEqual(
+      "https://github.com/textbook"
+    );
+    expect(
+      wrapper
+        .find("[data-qa=\"resource-creator\"]")
+        .text()
+        .trim()
+    ).toContain("textbook");
   });
 
   it("shows the resource description", () => {

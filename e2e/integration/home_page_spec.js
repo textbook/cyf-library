@@ -22,11 +22,19 @@ describe("Home Page", () => {
       cy.get(dataQa("resource-link"))
         .should("have.text", "View")
         .and("have.prop", "href", "https://reactjs.org/");
+      cy.get(dataQa("resource-created")).should(
+        "have.text",
+        "Added a few seconds ago"
+      );
     });
-    cy.get(dataQa("resource-created")).should(
-      "have.text",
-      "Added a few seconds ago"
-    );
+  });
+
+  it("should show a link to the resource's creator", () => {
+    cy.get(dataQa("resource")).within(() => {
+      cy.get(dataQa("resource-creator"))
+        .should("have.text", "textbook")
+        .and("have.prop", "href", "https://github.com/textbook");
+    });
   });
 
   it("should show the categories of the resource", () => {
