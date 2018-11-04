@@ -16,6 +16,19 @@ function appFactory(database) {
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, "static")));
 
+  if (app.get("env") === "production") {
+    app.enable("trust proxy");
+    app.use("*", (req, res, next) => {
+      if (!req.secure) {
+        return res.redirect(
+          301,
+          `https://${req.headers.host}${req.originalUrl}`
+        );
+      }
+      next();
+    });
+  }
+
   app.use((req, res, next) => {
     req.db = database;
     next();

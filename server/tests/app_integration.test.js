@@ -19,4 +19,23 @@ describe("routing", () => {
       .get("/api/foobar")
       .expect(404);
   });
+
+  describe("in production mode", () => {
+    beforeEach(() => {
+      process.env.NODE_ENV = "production";
+      app = appFactory(global.__MONGO_DB__);
+    });
+
+    afterEach(() => {
+      delete process.env.NODE_ENV;
+    });
+
+    it("redirects to HTTPS", async () => {
+      await request(app)
+        .get("/foo/bar")
+        .expect(301)
+        .expect("location", /^https:\/\//)
+        .expect("location", /\/foo\/bar$/);
+    });
+  });
 });
