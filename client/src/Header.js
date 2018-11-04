@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import './Header.css'
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import "./Header.css";
 
 const Header = () => (
   <header className="navbar navbar-expand-sm navbar-light">
@@ -30,6 +30,6 @@ const Header = () => (
       </ul>
     </div>
   </header>
-)
+);
 
-export default Header
+export default Header;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 export default () => (
   <div>
@@ -8,4 +8,4 @@ export default () => (
     <p>It is still a work in progress. For more information see <a href="https://github.com/textbook/cyf-library">its
       GitHub repository.</a></p>
   </div>
-)
+);

@@ -1,9 +1,9 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import './Resource.css'
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Resource.css";
 
 const Resource = (props) => {
-  const { name, url, description, categories } = props.resource
+  const { name, url, description, categories } = props.resource;
   return (
     <div className="card" data-qa="resource">
       <div className="card-body">
@@ -22,7 +22,7 @@ const Resource = (props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Resource
+export default Resource;

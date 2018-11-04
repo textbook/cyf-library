@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import React, { Component } from "react";
+import { Route } from "react-router-dom";
 
-import Header from './Header'
+import Header from "./Header";
 
-import { About } from './about'
-import { Category, Home } from './resources'
+import { About } from "./about";
+import { Category, Home } from "./resources";
 
 class App extends Component {
   constructor (props) {
-    super(props)
-    this.state = { resources: [] }
+    super(props);
+    this.state = { resources: [] };
   }
 
   render () {
@@ -27,8 +27,8 @@ class App extends Component {
           </main>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;

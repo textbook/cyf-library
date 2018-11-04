@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export default class Sort extends Component {
   static sortFunctions = {
@@ -7,7 +7,7 @@ export default class Sort extends Component {
   }
 
   selectChanged (event) {
-    this.props.sort(Sort.sortFunctions[event.target.value])
+    this.props.sort(Sort.sortFunctions[event.target.value]);
   }
 
   render () {
@@ -18,6 +18,6 @@ export default class Sort extends Component {
           <option value={1}>Sort by name</option>
         </select>
       </div>
-    )
+    );
   }
 }

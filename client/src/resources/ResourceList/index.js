@@ -1,3 +1,3 @@
-import ResourceList from './ResourceList'
+import ResourceList from "./ResourceList";
 
-export default ResourceList
+export default ResourceList;

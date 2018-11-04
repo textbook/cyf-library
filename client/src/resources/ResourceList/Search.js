@@ -1,22 +1,22 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export default class Search extends Component {
   buttonClicked () {
-    this.performSearch()
+    this.performSearch();
   }
 
   inputChanged (event) {
-    this.setState({ searchTerm: event.target.value })
+    this.setState({ searchTerm: event.target.value });
   }
 
   keyPressed (event) {
-    if (event.key === 'Enter') {
-      this.performSearch()
+    if (event.key === "Enter") {
+      this.performSearch();
     }
   }
 
   performSearch () {
-    this.props.search(this.state.searchTerm.toLowerCase())
+    this.props.search(this.state.searchTerm.toLowerCase());
   }
 
   render () {
@@ -30,6 +30,6 @@ export default class Search extends Component {
           </button>
         </div>
       </div>
-    )
+    );
   }
 }

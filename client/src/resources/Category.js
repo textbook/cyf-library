@@ -1,36 +1,36 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-import ResourceList from './ResourceList'
-import ResourceService from './ResourceService'
+import ResourceList from "./ResourceList";
+import ResourceService from "./ResourceService";
 
-import './Category.css'
+import "./Category.css";
 
 export default class Category extends Component {
   service = new ResourceService()
 
   constructor (props) {
-    super(props)
-    this.state = { resources: [], category: props.match.params.category, loaded: false }
+    super(props);
+    this.state = { resources: [], category: props.match.params.category, loaded: false };
   }
 
   componentDidMount () {
-    this.updateResources(this.state.category)
+    this.updateResources(this.state.category);
   }
 
   componentDidUpdate (prevProps) {
     if (prevProps.match.params.category !== this.props.match.params.category) {
-      const category = this.props.match.params.category
-      this.updateResources(category)
+      const category = this.props.match.params.category;
+      this.updateResources(category);
     }
   }
 
   showWarning () {
-    return this.state.loaded && this.state.resources.length === 0
+    return this.state.loaded && this.state.resources.length === 0;
   }
 
   updateResources (category) {
     this.service.getResourcesByCategory(category)
-      .then(resources => this.setState({ resources, category, loaded: true }))
+      .then((resources) => this.setState({ resources, category, loaded: true }));
   }
 
   render () {
@@ -46,6 +46,6 @@ export default class Category extends Component {
           : <ResourceList resources={this.state.resources}/>
         }
       </div>
-    )
+    );
   }
 }

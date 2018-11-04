@@ -1,3 +1,3 @@
 module.exports = {
-  testEnvironment: './mongo-environment.js',
-}
+  testEnvironment: "./mongo-environment.js",
+};
