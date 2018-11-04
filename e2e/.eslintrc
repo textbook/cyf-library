@@ -2,7 +2,8 @@
   "env": {
     "cypress/globals": true
   },
-  "plugins": [
-    "cypress"
-  ]
+  "plugins": ["cypress"],
+  "rules": {
+    "no-console": "off"
+  }
 }

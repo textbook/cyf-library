@@ -1,12 +1,11 @@
 const express = require("express");
-const expressMongo = require("express-mongo-db");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
 const resourcesRouter = require("./resources/routes");
 
-function appFactory (mongoUrl) {
+function appFactory(database) {
   const app = express();
 
   app.use(logger("dev"));
@@ -15,7 +14,10 @@ function appFactory (mongoUrl) {
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, "static")));
 
-  app.use(expressMongo(mongoUrl));
+  app.use((req, res, next) => {
+    req.db = database;
+    next();
+  });
 
   app.use("/api/resources", resourcesRouter);
 

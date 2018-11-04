@@ -4,95 +4,39 @@
  * Module dependencies.
  */
 
-const appFactory = require("./app");
 const debug = require("debug")("library:server");
 const http = require("http");
 
-/**
- * Configure database on app creation
- */
-const mongoUrl = process.env.DATABASE_URL || "mongodb://localhost:27017/library";
-const app = appFactory(mongoUrl);
+const appFactory = require("./app");
+const { Connection, getDatabaseUrl } = require("./db");
+
+let server;
+
+const mongoUrl = getDatabaseUrl();
 debug(`Connecting to ${mongoUrl}`);
 
-/**
- * Get port from environment and store in Express.
- */
-const port = normalizePort(process.env.PORT || "3000");
-app.set("port", port);
+const connection = new Connection(mongoUrl);
 
-/**
- * Create HTTP server.
- */
+connection.connect().then((db) => {
+  const app = appFactory(db);
 
-const server = http.createServer(app);
+  const port = parseInt(process.env.PORT || "3000");
+  app.set("port", port);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+  server = http.createServer(app);
 
-server.listen(port);
-server.on("error", onError);
-server.on("listening", onListening);
+  server.listen(port);
+  server.on("listening", () => {
+    debug(`Listening on ${port}`);
+  });
+});
 
-/**
- * Normalize a port into a number, string, or false.
- */
-
-function normalizePort(val) {
-  const port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
+function shutdown() {
+  connection
+    .disconnect()
+    .then(() => process.exit(0))
+    .catch(() => process.exit(1));
 }
 
-/**
- * Event listener for HTTP server "error" event.
- */
-
-function onError(error) {
-  if (error.syscall !== "listen") {
-    throw error;
-  }
-
-  const bind = typeof port === "string"
-    ? "Pipe " + port
-    : "Port " + port;
-
-  // handle specific listen errors with friendly messages
-  /* eslint-disable no-console */
-  switch (error.code) {
-  case "EACCES":
-    console.error(bind + " requires elevated privileges");
-    process.exit(1);
-    break;
-  case "EADDRINUSE":
-    console.error(bind + " is already in use");
-    process.exit(1);
-    break;
-  default:
-    throw error;
-  }
-  /* eslint-enable */
-}
-
-/**
- * Event listener for HTTP server "listening" event.
- */
-
-function onListening() {
-  const addr = server.address();
-  const bind = typeof addr === "string"
-    ? "pipe " + addr
-    : "port " + addr.port;
-  debug("Listening on " + bind);
-}
+process.on("SIGINT", shutdown);
+process.on("SIGTERM", shutdown);

@@ -26,7 +26,7 @@ describe("/resources", () => {
 
   beforeAll(async () => {
     db = global.__MONGO_DB__;
-    app = appFactory(`${global.__MONGO_URI__}`);
+    app = appFactory(db);
   });
 
   const safeDrop = async (collection) => {
@@ -59,8 +59,11 @@ describe("/resources", () => {
     const response = await request(app).get(route);
     const resources = response.body;
 
-    expect(resources.map((resource) => resource.name))
-      .toEqual(resources.sort((a, b) => b.created - a.created).map((resource) => resource.name));
+    expect(resources.map((resource) => resource.name)).toEqual(
+      resources
+        .sort((a, b) => b.created - a.created)
+        .map((resource) => resource.name)
+    );
   });
 
   test("should not expose Mongo object ID", async () => {
@@ -71,7 +74,9 @@ describe("/resources", () => {
 
   test("should expose empty categories array for resources with no categories", async () => {
     const response = await request(app).get(route);
-    const resource = response.body.filter((resource) => resource.name === "React")[0];
+    const resource = response.body.filter(
+      (resource) => resource.name === "React"
+    )[0];
     expect(resource.categories).toEqual([]);
   });
 

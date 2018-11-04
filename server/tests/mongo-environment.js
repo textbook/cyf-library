@@ -1,6 +1,6 @@
 const NodeEnvironment = require("jest-environment-node");
-const { MongoClient } = require("mongodb");
-const { MongoMemoryServer } = require("mongodb-memory-server");
+
+const { Connection } = require("../db");
 
 module.exports = class MongoEnvironment extends NodeEnvironment {
   constructor(config) {
@@ -19,24 +19,13 @@ module.exports = class MongoEnvironment extends NodeEnvironment {
   }
 
   async teardown() {
-    await this.global.__MONGO_CONNECTION__.close();
-    await this.global.__MONGOD__.stop();
+    await this.global.__MONGO_CONNECTION__.disconnect();
     return super.teardown();
   }
 
   async configureDatabase() {
-    let mongod = new MongoMemoryServer({ binary: { version: "3.6.3" } });
-    this.global.__MONGOD__ = mongod;
-
-    const uri = await mongod.getConnectionString();
-    this.global.__MONGO_URI__ = uri;
-
-    const connection = await MongoClient.connect(
-      uri,
-      { useNewUrlParser: true }
-    );
+    const connection = new Connection(this.global.DATABASE_URL);
     this.global.__MONGO_CONNECTION__ = connection;
-
-    this.global.__MONGO_DB__ = await connection.db();
+    this.global.__MONGO_DB__ = await connection.connect();
   }
 };
