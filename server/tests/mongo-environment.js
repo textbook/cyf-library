@@ -24,7 +24,7 @@ module.exports = class MongoEnvironment extends NodeEnvironment {
   }
 
   async configureDatabase() {
-    const connection = new Connection(this.global.DATABASE_URL);
+    const connection = new Connection(this.global.MONGODB_URI);
     this.global.__MONGO_CONNECTION__ = connection;
     this.global.__MONGO_DB__ = await connection.connect();
   }

@@ -5,7 +5,7 @@ const getDatabaseUrl = () => {
   try {
     return cfServices("resource-library").credentials.uri;
   } catch (err) {
-    return process.env.DATABASE_URL || "mongodb://localhost:27017/library";
+    return process.env.MONGODB_URI || "mongodb://localhost:27017/library";
   }
 };
 

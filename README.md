@@ -71,7 +71,7 @@ the root. The following are currently available:
 
 Both `start` and `dev` expect a MongoDB running locally. By default it's
 expected to be accessible on port 27017 on localhost; if your setup is
-different provide the appropriate database URL as the `DATABASE_URL`
+different provide the appropriate database URL as the `MONGODB_URI`
 environment variable.
 
 ## Migrations
@@ -80,7 +80,7 @@ environment variable.
 production. You can generate a new migration file with `yarn mm create <name>`
 then edit the resulting file in `server/migrations/`. Like other parts of the
 app that relate to the database, the migrations will be applied the database
-found via the `DATABASE_URL` environment variable or, if that is not set, the
+found via the `MONGODB_URI` environment variable or, if that is not set, the
 MongoDB running on port 27017 on localhost.
 
 Note that the E2E tests will clear and re-seed the database, removing all
@@ -127,7 +127,7 @@ migrations.
 
 The following environment variables are handled by the application:
 
-- `DATABASE_URL`: The URL for connection to MongoDB (defaults to
+- `MONGODB_URI`: The URL for connection to MongoDB (defaults to
   `mongodb://localhost:27017/library`)
 
 - `PORT`: The port to serve on (defaults to `3000`).
